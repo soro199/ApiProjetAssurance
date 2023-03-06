@@ -31,6 +31,7 @@ import jakarta.transaction.Transactional;
  */
 
 @RestController
+@CrossOrigin(origins = "*")
 
 
 public class UtilisateurController {
