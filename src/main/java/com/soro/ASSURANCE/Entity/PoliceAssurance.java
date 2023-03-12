@@ -20,11 +20,12 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "police_assurance")
-@NoArgsConstructor
+ 
 public class PoliceAssurance  implements Serializable {
 
 	// les attributs
@@ -32,103 +33,28 @@ public class PoliceAssurance  implements Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 
-	@ManyToOne
-	@JoinColumn(name = "utilisateur_id")
-	@JsonIgnore
-	private Utilisateur utilisateur;
+	//liaison 
+	  //souscription
+	@OneToMany(mappedBy = "police")
+	private List<Souscription> souscription;
 
 	private String typePolice;
-	 @DateTimeFormat(pattern = "yyy-MM-dd")
-	private Date dateDebut;
-	 @DateTimeFormat(pattern = "yyy-MM-dd")
-	private Date dateFin;
+	 
 	private float montantPrime;
-	 @DateTimeFormat(pattern = "yyy-MM-dd")
-	private Date dateSoucription;
+	
+	private String description_police;
+	
 
 	// mapping avec sinistres
 	@OneToMany(mappedBy = "police")
 	private List<Sinistre> sinistres;
 
-	// le constructeur avec paramette
+	
+	
+	
 
-	public PoliceAssurance(Long id, Utilisateur utilisateur, String typePolice, Date dateDebut,
-			Date dateFin, float montantPrime, Date dateSoucription, List<Sinistre> sinistres) {
-		super();
-		this.id = id;
-		this.utilisateur = utilisateur;
-		this.typePolice = typePolice;
-		this.dateDebut = dateDebut;
-		this.dateFin = dateFin;
-		this.montantPrime = montantPrime;
-		this.dateSoucription = dateSoucription;
-		this.sinistres = sinistres;
-	}
-	// les getters et setters
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public Utilisateur getUtilisateur() {
-		return utilisateur;
-	}
-
-	public void setUtilisateur(Utilisateur utilisateur) {
-		this.utilisateur = utilisateur;
-	}
-
-	public String getTypePolice() {
-		return typePolice;
-	}
-
-	public void setTypePolice(String typePolice) {
-		this.typePolice = typePolice;
-	}
-
-	public Date getDateDebut() {
-		return dateDebut;
-	}
-
-	public void setDateDebut(Date dateDebut) {
-		this.dateDebut = dateDebut;
-	}
-
-	public Date getDateFin() {
-		return dateFin;
-	}
-
-	public void setDateFin(Date dateFin) {
-		this.dateFin = dateFin;
-	}
-
-	public float getMontantPrime() {
-		return montantPrime;
-	}
-
-	public void setMontantPrime(float montantPrime) {
-		this.montantPrime = montantPrime;
-	}
-
-	public Date getDateSoucription() {
-		return dateSoucription;
-	}
-
-	public void setDateSoucription(Date dateSoucription) {
-		this.dateSoucription = dateSoucription;
-	}
-
-	public List<Sinistre> getSinistres() {
-		return sinistres;
-	}
-
-	public void setSinistres(List<Sinistre> sinistres) {
-		this.sinistres = sinistres;
-	}
+	
+	
 
 	/**
 	 * 
@@ -137,6 +63,117 @@ public class PoliceAssurance  implements Serializable {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+
+	
+	// le constructeur avec paramette
+	/**
+	 * @return the id
+	 */
+	public Long getId() {
+		return id;
+	}
+
+	/**
+	 * @param id the id to set
+	 */
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	/**
+	 * @return the souscription
+	 */
+	public List<Souscription> getSouscription() {
+		return souscription;
+	}
+
+	/**
+	 * @param souscription the souscription to set
+	 */
+	public void setSouscription(List<Souscription> souscription) {
+		this.souscription = souscription;
+	}
+
+	/**
+	 * @return the typePolice
+	 */
+	public String getTypePolice() {
+		return typePolice;
+	}
+
+	/**
+	 * @param typePolice the typePolice to set
+	 */
+	public void setTypePolice(String typePolice) {
+		this.typePolice = typePolice;
+	}
+
+	/**
+	 * @return the montantPrime
+	 */
+	public float getMontantPrime() {
+		return montantPrime;
+	}
+
+	/**
+	 * @param montantPrime the montantPrime to set
+	 */
+	public void setMontantPrime(float montantPrime) {
+		this.montantPrime = montantPrime;
+	}
+
+	/**
+	 * @return the description_police
+	 */
+	public String getDescription_police() {
+		return description_police;
+	}
+
+	/**
+	 * @param description_police the description_police to set
+	 */
+	public void setDescription_police(String description_police) {
+		this.description_police = description_police;
+	}
+
+	/**
+	 * @return the sinistres
+	 */
+	public List<Sinistre> getSinistres() {
+		return sinistres;
+	}
+
+	/**
+	 * @param sinistres the sinistres to set
+	 */
+	public void setSinistres(List<Sinistre> sinistres) {
+		this.sinistres = sinistres;
+	}
+
+	// constructeur avec paramettre
+	/**
+	 * @param id
+	 * @param souscription
+	 * @param typePolice
+	 * @param montantPrime
+	 * @param description_police
+	 * @param sinistres
+	 */
+	public PoliceAssurance(Long id, List<Souscription> souscription, String typePolice, float montantPrime,
+			String description_police, List<Sinistre> sinistres) {
+		super();
+		this.id = id;
+		this.souscription = souscription;
+		this.typePolice = typePolice;
+		this.montantPrime = montantPrime;
+		this.description_police = description_police;
+		this.sinistres = sinistres;
+	}
+	
+	
+	
+	
+	
 	
 	
 

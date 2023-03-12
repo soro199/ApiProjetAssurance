@@ -3,6 +3,8 @@ package com.soro.ASSURANCE.Entity;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -10,9 +12,11 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
 
 @Entity
 @Table(name = "sinistre")
+ 
 public class Sinistre  implements Serializable{
 	// attributs
 	@Id
@@ -21,6 +25,7 @@ public class Sinistre  implements Serializable{
 
 	@ManyToOne
 	@JoinColumn(name = "utilisateur_id")
+	@JsonIgnore
 	private Utilisateur utilisateur;
 
 	@ManyToOne
