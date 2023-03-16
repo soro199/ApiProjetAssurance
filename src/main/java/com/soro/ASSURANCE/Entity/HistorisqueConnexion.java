@@ -4,7 +4,11 @@ import java.io.Serializable;
 import java.sql.Date;
 import java.time.LocalDateTime;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIdentityReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -17,8 +21,8 @@ import lombok.AllArgsConstructor;
 
 @Entity
 @Table(name = "historie_connexion")
- 
-public class HistorisqueConnexion  implements Serializable {
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class,property = "id")
+public class HistorisqueConnexion implements Serializable  {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -26,7 +30,8 @@ public class HistorisqueConnexion  implements Serializable {
 
 	@ManyToOne
 	@JoinColumn(name = "utilisateur_id")
-	@JsonIgnore
+	//@JsonBackReference
+	@JsonIdentityReference(alwaysAsId = true)
 	private Utilisateur utilisateur;
 
 	private Date dateConnexion;

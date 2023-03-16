@@ -3,13 +3,13 @@
  */
 package com.soro.ASSURANCE.Controller;
 
-import java.awt.PageAttributes.MediaType;
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
+
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -20,7 +20,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.soro.ASSURANCE.Entity.Utilisateur;
+
 import com.soro.ASSURANCE.Repository.UtilisateurRepository;
+
 import com.soro.ASSURANCE.Service.UtilisateurImpl;
 
 import jakarta.transaction.Transactional;
@@ -31,16 +33,16 @@ import jakarta.transaction.Transactional;
  */
 
 @RestController
-@CrossOrigin(origins = "*")
-
-
-public class UtilisateurController {
+@CrossOrigin(origins = "**")
+public class UtilisateurController  {
 
 	@Autowired
 	public UtilisateurRepository utilisateurRepository;
 	
 	@Autowired
 	public UtilisateurImpl utilisateurImpl;
+	
+	
 	
 	
 	@PostMapping("/ajout/utilisateur")
@@ -53,6 +55,9 @@ public class UtilisateurController {
 		
 	}
 	
+	
+	
+
 	@RequestMapping(value="/listeUtilisateur", method = RequestMethod.GET)
 
 	public List<Utilisateur> listeUtilisateur(){		

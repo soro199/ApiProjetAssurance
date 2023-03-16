@@ -3,11 +3,16 @@
  */
 package com.soro.ASSURANCE.Entity;
 
+import java.io.Serializable;
 import java.sql.Date;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIdentityReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -27,8 +32,8 @@ import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name= "souscription")
- 
-public class Souscription {
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class,property = "id")
+public class Souscription implements Serializable  {
 	
 	
 	// les attributs 
@@ -47,12 +52,14 @@ public class Souscription {
 	
 	@OneToOne
 	@JoinColumn(name = "utilisateur_id")
-	@JsonIgnore
+	//@JsonBackReference
+	@JsonIdentityReference(alwaysAsId = true)
 	private Utilisateur utilisateur;
 	
 	@OneToOne
 	@JoinColumn(name = "police_id")
-	@JsonIgnore
+	//@JsonBackReference
+	@JsonIdentityReference(alwaysAsId = true)
 	private PoliceAssurance police;
 	
 	// super class

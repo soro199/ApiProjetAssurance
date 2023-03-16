@@ -44,6 +44,12 @@ public class RoleImpl implements IRole {
 		role.deleteById(id);
 	}
 
+	@Override
+	public Role findonRole(Long id) {
+		// TODO Auto-generated method stub
+		return this.role.findById(id).get();
+	}
+
 
 
 }

@@ -9,7 +9,11 @@ import javax.xml.crypto.Data;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIdentityReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import jakarta.annotation.Generated;
 import jakarta.persistence.Entity;
@@ -25,8 +29,8 @@ import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "police_assurance")
- 
-public class PoliceAssurance  implements Serializable {
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class,property = "id")
+public class PoliceAssurance implements Serializable  {
 
 	// les attributs
 	@Id
@@ -36,6 +40,8 @@ public class PoliceAssurance  implements Serializable {
 	//liaison 
 	  //souscription
 	@OneToMany(mappedBy = "police")
+	//@JsonManagedReference
+	@JsonIdentityReference(alwaysAsId = true)
 	private List<Souscription> souscription;
 
 	private String typePolice;
@@ -47,6 +53,8 @@ public class PoliceAssurance  implements Serializable {
 
 	// mapping avec sinistres
 	@OneToMany(mappedBy = "police")
+	//@JsonManagedReference
+	@JsonIdentityReference(alwaysAsId = true)
 	private List<Sinistre> sinistres;
 
 	

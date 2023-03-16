@@ -18,4 +18,5 @@ public interface IRole {
 	public List<Role> readRole();
 	public Role updateRoleById(Long id, Role ag);
 	public void deleteRoleById(Long id);
+	public Role findonRole(Long id);
 }

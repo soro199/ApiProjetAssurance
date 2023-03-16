@@ -31,7 +31,7 @@ import com.soro.ASSURANCE.Entity.*;
  */
 
 @RestController
-@CrossOrigin(origins = "*")
+@CrossOrigin(origins = "**")
 public class Role {
 
 	@Autowired

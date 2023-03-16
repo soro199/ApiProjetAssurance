@@ -3,7 +3,9 @@ package com.soro.ASSURANCE.Entity;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -16,8 +18,8 @@ import lombok.AllArgsConstructor;
 
 @Entity
 @Table(name = "sinistre")
- 
-public class Sinistre  implements Serializable{
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class,property = "id")
+public class Sinistre implements Serializable   {
 	// attributs
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,7 +27,7 @@ public class Sinistre  implements Serializable{
 
 	@ManyToOne
 	@JoinColumn(name = "utilisateur_id")
-	@JsonIgnore
+	//@JsonIgnore
 	private Utilisateur utilisateur;
 
 	@ManyToOne

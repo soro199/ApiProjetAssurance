@@ -6,6 +6,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -13,14 +14,18 @@ import lombok.Setter;
 
 import java.io.Serializable;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIdentityReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.soro.ASSURANCE.Entity.*;
 
 @Entity
 @Table(name = "document")
  
-
-public class Document  implements Serializable {
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class,property = "id")
+public class Document implements Serializable  {
 	//constructeurs avec les parametres
 
 	public Document(Long id, String fichier, String typeDocument, Utilisateur utilisateur) {
@@ -37,9 +42,10 @@ public class Document  implements Serializable {
 	private String fichier;
 	private String typeDocument;
 
-	@ManyToOne
+	@OneToOne
 	@JoinColumn(name = "utilisateur_id")
-	@JsonIgnore
+	//@JsonBackReference
+	@JsonIdentityReference(alwaysAsId = true)
 	private Utilisateur utilisateur;
 
 	//les getters et setters

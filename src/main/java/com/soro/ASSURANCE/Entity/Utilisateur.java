@@ -1,11 +1,19 @@
 package com.soro.ASSURANCE.Entity;
 
+
 import java.io.Serializable;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIdentityReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -19,8 +27,8 @@ import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name= "utilisateur")
-
-public class Utilisateur  {
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class,property = "id")
+public class Utilisateur implements Serializable  {
 	
 	//Les attributs 
 	@Id
@@ -38,33 +46,41 @@ public class Utilisateur  {
 	
 	//liaison 
 	  //souscription
-	@OneToMany(mappedBy = "utilisateur")
+	@OneToMany(mappedBy = "utilisateur",fetch=FetchType.EAGER)
+	@JsonIdentityReference(alwaysAsId = true)
 	private List<Souscription> souscription;
 	 // mapping avec sinistres
     @OneToMany(mappedBy = "utilisateur")
+    @JsonIdentityReference(alwaysAsId = true)    
     private List<Sinistre> sinistre;
 
     // mapping avec paiements
-    @OneToMany(mappedBy = "utilisateur")
-    private List<Paiement> paiement;
+    @OneToMany(mappedBy = "utilisateur",cascade = CascadeType.ALL)
+    @JsonIdentityReference(alwaysAsId = true)
+    private List<Paiement> paiement  ;
 
     // mapping avec notifications
     @OneToMany(mappedBy = "utilisateur")
+    @JsonIdentityReference(alwaysAsId = true)
     private List<Notification> notification;
 
     // mapping avec documents
     @OneToMany(mappedBy = "utilisateur")
+    //@JsonManagedReference
+    @JsonIdentityReference(alwaysAsId = true)
     private List<Document> document;
 
     // mapping avec historique de connexion
     @OneToMany(mappedBy = "utilisateur")
+    @JsonIdentityReference(alwaysAsId = true)
     private List<HistorisqueConnexion> historiqueConnexion;
     
     //role
 
   	@OneToOne
-	@JoinColumn(name = "role_id")
-	
+  	//@JsonBackReference
+  	@JsonIdentityReference(alwaysAsId = true)
+	@JoinColumn(name = "role_id",referencedColumnName = "id")
 	private Role role;
 	
       

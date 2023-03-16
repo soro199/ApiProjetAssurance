@@ -3,8 +3,15 @@
  */
 package com.soro.ASSURANCE.Entity;
 
+import java.io.Serializable;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIdentityReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -21,8 +28,8 @@ import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name= "role")
- 
-public class Role {
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class,property = "id")
+public class Role implements Serializable  {
 	
 	
 	@Id
@@ -33,7 +40,9 @@ public class Role {
 	
 	
 	//role
-  	@OneToMany(mappedBy = "role")
+  	@OneToMany(mappedBy = "role",cascade = CascadeType.ALL)
+  	//@JsonManagedReference
+  	@JsonIdentityReference(alwaysAsId = true)
   	private List<Utilisateur> utilisateur;
 
 
