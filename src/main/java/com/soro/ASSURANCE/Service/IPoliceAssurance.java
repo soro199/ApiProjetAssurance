@@ -12,10 +12,13 @@ import com.soro.ASSURANCE.Entity.*;
  *
  */
 public interface IPoliceAssurance {
-	
+
 	public PoliceAssurance createPoliceAssurance(PoliceAssurance ag);
+
 	public List<PoliceAssurance> readPoliceAssurance();
+
 	public PoliceAssurance updatePoliceAssuranceById(Long id, PoliceAssurance ag);
+
 	public void deletePoliceAssuranceById(Long id);
 
 }

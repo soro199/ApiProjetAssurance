@@ -29,40 +29,32 @@ import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "police_assurance")
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class,property = "id")
-public class PoliceAssurance implements Serializable  {
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
+public class PoliceAssurance implements Serializable {
 
 	// les attributs
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 
-	//liaison 
-	  //souscription
+	// liaison
+	// souscription
 	@OneToMany(mappedBy = "police")
-	//@JsonManagedReference
+	// @JsonManagedReference
 	@JsonIdentityReference(alwaysAsId = true)
 	private List<Souscription> souscription;
 
 	private String typePolice;
-	 
+
 	private float montantPrime;
-	
+
 	private String description_police;
-	
 
 	// mapping avec sinistres
 	@OneToMany(mappedBy = "police")
-	//@JsonManagedReference
+	// @JsonManagedReference
 	@JsonIdentityReference(alwaysAsId = true)
 	private List<Sinistre> sinistres;
-
-	
-	
-	
-
-	
-	
 
 	/**
 	 * 
@@ -72,7 +64,6 @@ public class PoliceAssurance implements Serializable  {
 		// TODO Auto-generated constructor stub
 	}
 
-	
 	// le constructeur avec paramette
 	/**
 	 * @return the id
@@ -177,12 +168,5 @@ public class PoliceAssurance implements Serializable  {
 		this.description_police = description_police;
 		this.sinistres = sinistres;
 	}
-	
-	
-	
-	
-	
-	
-	
 
 }

@@ -13,8 +13,7 @@ public class HistorieConnexioImpl implements IHistorieConnexion {
 
 	@Autowired
 	HistorieConnexionRepository historie;
-	
-	
+
 	@Override
 	public HistorisqueConnexion createHistorisqueConnexion(HistorisqueConnexion ag) {
 		// TODO Auto-generated method stub
@@ -36,14 +35,9 @@ public class HistorieConnexioImpl implements IHistorieConnexion {
 	@Override
 	public void deleteHistorisqueConnexionById(Long id) {
 		// TODO Auto-generated method stub
-		
-	historie.deleteById(id);
-		
+
+		historie.deleteById(id);
+
 	}
-
-
-	
-	
-	
 
 }

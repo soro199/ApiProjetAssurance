@@ -27,34 +27,29 @@ import lombok.NoArgsConstructor;
  */
 
 @Entity
-@Table(name= "role")
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class,property = "id")
-public class Role implements Serializable  {
-	
-	
+@Table(name = "role")
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
+public class Role implements Serializable {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
-	
+
 	private String libelle_role;
-	
-	
-	//role
-  	@OneToMany(mappedBy = "role",cascade = CascadeType.ALL)
-  	//@JsonManagedReference
-  	@JsonIdentityReference(alwaysAsId = true)
-  	private List<Utilisateur> utilisateur;
 
+	// role
+	@OneToMany(mappedBy = "role", cascade = CascadeType.ALL)
+	// @JsonManagedReference
+	@JsonIdentityReference(alwaysAsId = true)
+	private List<Utilisateur> utilisateur;
 
-  	
-  //getters setters
+	// getters setters
 	/**
 	 * @return the id
 	 */
 	public Long getId() {
 		return id;
 	}
-
 
 	/**
 	 * @param id the id to set
@@ -63,14 +58,12 @@ public class Role implements Serializable  {
 		this.id = id;
 	}
 
-
 	/**
 	 * @return the libelle_role
 	 */
 	public String getLibelle_role() {
 		return libelle_role;
 	}
-
 
 	/**
 	 * @param libelle_role the libelle_role to set
@@ -79,14 +72,12 @@ public class Role implements Serializable  {
 		this.libelle_role = libelle_role;
 	}
 
-
 	/**
 	 * @return the utilisateur
 	 */
 	public List<Utilisateur> getUtilisateur() {
 		return utilisateur;
 	}
-
 
 	/**
 	 * @param utilisateur the utilisateur to set
@@ -95,8 +86,7 @@ public class Role implements Serializable  {
 		this.utilisateur = utilisateur;
 	}
 
-	
-	//constructeur avec et sans paramettre
+	// constructeur avec et sans paramettre
 
 	/**
 	 * @param id
@@ -110,7 +100,6 @@ public class Role implements Serializable  {
 		this.utilisateur = utilisateur;
 	}
 
-
 	/**
 	 * 
 	 */
@@ -118,18 +107,5 @@ public class Role implements Serializable  {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-  	
-	
-	
-	
-	
-	
-	
-  	
-  	
-  	
-  	
-  	
-  	
 
 }

@@ -21,8 +21,8 @@ import lombok.AllArgsConstructor;
 
 @Entity
 @Table(name = "historie_connexion")
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class,property = "id")
-public class HistorisqueConnexion implements Serializable  {
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
+public class HistorisqueConnexion implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -30,15 +30,14 @@ public class HistorisqueConnexion implements Serializable  {
 
 	@ManyToOne
 	@JoinColumn(name = "utilisateur_id")
-	//@JsonBackReference
+	// @JsonBackReference
 	@JsonIdentityReference(alwaysAsId = true)
 	private Utilisateur utilisateur;
 
 	private Date dateConnexion;
 	private String adresseIp;
-	
-	
-	//le constructeurs avec paramettres
+
+	// le constructeurs avec paramettres
 	public HistorisqueConnexion(Long id, Utilisateur utilisateur, Date dateConnexion, String adresseIp) {
 		super();
 		this.id = id;
@@ -46,31 +45,40 @@ public class HistorisqueConnexion implements Serializable  {
 		this.dateConnexion = dateConnexion;
 		this.adresseIp = adresseIp;
 	}
-	//les getters et setters
+
+	// les getters et setters
 	public Long getId() {
 		return id;
 	}
+
 	public void setId(Long id) {
 		this.id = id;
 	}
+
 	public Utilisateur getUtilisateur() {
 		return utilisateur;
 	}
+
 	public void setUtilisateur(Utilisateur utilisateur) {
 		this.utilisateur = utilisateur;
 	}
+
 	public Date getDateConnexion() {
 		return dateConnexion;
 	}
+
 	public void setDateConnexion(Date dateConnexion) {
 		this.dateConnexion = dateConnexion;
 	}
+
 	public String getAdresseIp() {
 		return adresseIp;
 	}
+
 	public void setAdresseIp(String adresseIp) {
 		this.adresseIp = adresseIp;
 	}
+
 	/**
 	 * 
 	 */
@@ -78,8 +86,5 @@ public class HistorisqueConnexion implements Serializable  {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	
-	
-	
 
 }

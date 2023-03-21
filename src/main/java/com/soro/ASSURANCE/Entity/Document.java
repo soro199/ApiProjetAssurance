@@ -23,10 +23,10 @@ import com.soro.ASSURANCE.Entity.*;
 
 @Entity
 @Table(name = "document")
- 
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class,property = "id")
-public class Document implements Serializable  {
-	//constructeurs avec les parametres
+
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
+public class Document implements Serializable {
+	// constructeurs avec les parametres
 
 	public Document(Long id, String fichier, String typeDocument, Utilisateur utilisateur) {
 		super();
@@ -44,11 +44,11 @@ public class Document implements Serializable  {
 
 	@OneToOne
 	@JoinColumn(name = "utilisateur_id")
-	//@JsonBackReference
+	// @JsonBackReference
 	@JsonIdentityReference(alwaysAsId = true)
 	private Utilisateur utilisateur;
 
-	//les getters et setters
+	// les getters et setters
 	public Long getId() {
 		return id;
 	}
@@ -88,9 +88,5 @@ public class Document implements Serializable  {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	
-	
-	
-	
 
 }

@@ -9,8 +9,8 @@ import com.soro.ASSURANCE.Entity.*;
 import com.soro.ASSURANCE.Repository.*;
 
 @Component
-public class DocumentImpl implements IDocument{
-	
+public class DocumentImpl implements IDocument {
+
 	@Autowired
 	DocumentRepository document;
 
@@ -35,19 +35,9 @@ public class DocumentImpl implements IDocument{
 	@Override
 	public void deleteDocumentById(Long id) {
 		// TODO Auto-generated method stubù
-		
-		document.deleteById(id);
-		
-	}
 
-	
-	
-	
-	
-	
-	
-	
-	
-	
+		document.deleteById(id);
+
+	}
 
 }

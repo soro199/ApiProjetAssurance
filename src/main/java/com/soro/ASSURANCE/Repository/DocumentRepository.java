@@ -7,6 +7,5 @@ import com.soro.ASSURANCE.Entity.Document;
 
 @Repository
 public interface DocumentRepository extends JpaRepository<Document, Long> {
-	
 
 }

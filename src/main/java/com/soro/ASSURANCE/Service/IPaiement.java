@@ -12,10 +12,13 @@ import com.soro.ASSURANCE.Entity.*;
  *
  */
 public interface IPaiement {
-	
+
 	public Paiement createPaiement(Paiement ag);
+
 	public List<Paiement> readPaiement();
+
 	public Paiement updatePaiementById(Long id, Paiement ag);
+
 	public void deletePaiementById(Long id);
 
 }

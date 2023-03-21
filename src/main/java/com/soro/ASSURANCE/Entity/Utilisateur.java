@@ -1,6 +1,5 @@
 package com.soro.ASSURANCE.Entity;
 
-
 import java.io.Serializable;
 import java.util.List;
 
@@ -25,16 +24,18 @@ import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
+
 @Entity
-@Table(name= "utilisateur")
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class,property = "id")
-public class Utilisateur implements Serializable  {
-	
-	//Les attributs 
+@Table(name = "utilisateur")
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
+public class Utilisateur implements Serializable {
+
+	// Les attributs
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
-	private String nom ;
+	
+	private String nom;
 	private String prenoms;
 	private String tel;
 	private String email;
@@ -43,67 +44,55 @@ public class Utilisateur implements Serializable  {
 	private String lieuNaissance;
 	private String profession;
 	private String situationMatrimoniale;
-	
-	//liaison 
-	  //souscription
-	@OneToMany(mappedBy = "utilisateur",fetch=FetchType.EAGER)
+
+	// liaison
+	// souscription
+	@OneToMany(mappedBy = "utilisateur", fetch = FetchType.EAGER)
 	@JsonIdentityReference(alwaysAsId = true)
 	private List<Souscription> souscription;
-	 // mapping avec sinistres
-    @OneToMany(mappedBy = "utilisateur")
-    @JsonIdentityReference(alwaysAsId = true)    
-    private List<Sinistre> sinistre;
+	// mapping avec sinistres
+	@OneToMany(mappedBy = "utilisateur")
+	@JsonIdentityReference(alwaysAsId = true)
+	private List<Sinistre> sinistre;
 
-    // mapping avec paiements
-    @OneToMany(mappedBy = "utilisateur",cascade = CascadeType.ALL)
-    @JsonIdentityReference(alwaysAsId = true)
-    private List<Paiement> paiement  ;
+	// mapping avec paiements
+	@OneToMany(mappedBy = "utilisateur", cascade = CascadeType.ALL)
+	@JsonIdentityReference(alwaysAsId = true)
+	private List<Paiement> paiement;
 
-    // mapping avec notifications
-    @OneToMany(mappedBy = "utilisateur")
-    @JsonIdentityReference(alwaysAsId = true)
-    private List<Notification> notification;
+	// mapping avec notifications
+	@OneToMany(mappedBy = "utilisateur")
+	@JsonIdentityReference(alwaysAsId = true)
+	private List<Notification> notification;
 
-    // mapping avec documents
-    @OneToMany(mappedBy = "utilisateur")
-    //@JsonManagedReference
-    @JsonIdentityReference(alwaysAsId = true)
-    private List<Document> document;
+	// mapping avec documents
+	@OneToMany(mappedBy = "utilisateur")
+	// @JsonManagedReference
+	@JsonIdentityReference(alwaysAsId = true)
+	private List<Document> document;
 
-    // mapping avec historique de connexion
-    @OneToMany(mappedBy = "utilisateur")
-    @JsonIdentityReference(alwaysAsId = true)
-    private List<HistorisqueConnexion> historiqueConnexion;
-    
-    //role
+	// mapping avec historique de connexion
+	@OneToMany(mappedBy = "utilisateur")
+	@JsonIdentityReference(alwaysAsId = true)
+	private List<HistorisqueConnexion> historiqueConnexion;
 
-  	@OneToOne
-  	//@JsonBackReference
-  	@JsonIdentityReference(alwaysAsId = true)
-	@JoinColumn(name = "role_id",referencedColumnName = "id")
+	// role
+
+	@OneToOne
+	// @JsonBackReference
+	@JsonIdentityReference(alwaysAsId = true)
+	@JoinColumn(name = "role_id", referencedColumnName = "id")
 	private Role role;
-	
-      
-   
-  	
-  	
-  	
-  
 
-  
-  	
-  	
-  	//super class
-
-
+	// super class
 
 	public Utilisateur() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	  // les getters et les setters
-	 /**
+	// les getters et les setters
+	/**
 	 * @return the id
 	 */
 	public Long getId() {
@@ -341,7 +330,7 @@ public class Utilisateur implements Serializable  {
 		this.role = role;
 	}
 
-	//constructeur avec paramettre
+	// constructeur avec paramettre
 	/**
 	 * @param id
 	 * @param nom
@@ -384,22 +373,5 @@ public class Utilisateur implements Serializable  {
 		this.historiqueConnexion = historiqueConnexion;
 		this.role = role;
 	}
-    
-    
-    
-    
-  
-    
-    
-    
-    
-    
-    
-    
-    
-	
-	
-	
-	
 
 }

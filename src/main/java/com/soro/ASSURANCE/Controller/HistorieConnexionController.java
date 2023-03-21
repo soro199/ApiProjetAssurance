@@ -21,60 +21,48 @@ import jakarta.transaction.Transactional;
 
 @RestController
 public class HistorieConnexionController {
-	
+
 	@Autowired
 	HistorieConnexioImpl historieI;
 	@Autowired
-	HistorieConnexionRepository  historieR;
-	
-	
-	@RequestMapping(value = "/ajouteHist",method =RequestMethod.POST )
+	HistorieConnexionRepository historieR;
+
+	@RequestMapping(value = "/ajouteHist", method = RequestMethod.POST)
 	public HistorisqueConnexion AjouterHistorie(@RequestBody HistorisqueConnexion his) {
 		return historieI.createHistorisqueConnexion(his);
-				
+
 	}
-	
-	
-	
 
-	@RequestMapping(value="/listeHistorie", method = RequestMethod.GET)
+	@RequestMapping(value = "/listeHistorie", method = RequestMethod.GET)
 
-	public List<HistorisqueConnexion> listeHistorie(){		
+	public List<HistorisqueConnexion> listeHistorie() {
 		return historieI.readHistorisqueConnexion();
 	}
-	
-	
-	
-	@RequestMapping(value="/afficherHistorique/{id}", method = RequestMethod.GET)
-	public HistorisqueConnexion afficherHistorie(@PathVariable Long id){
-		
+
+	@RequestMapping(value = "/afficherHistorique/{id}", method = RequestMethod.GET)
+	public HistorisqueConnexion afficherHistorie(@PathVariable Long id) {
+
 		HistorisqueConnexion his = historieR.findById(id).orElse(null);
-	
+
 		return his;
-		
+
 	}
-	
-	
-	@DeleteMapping(value="/deleteHistorie/{id}")
+
+	@DeleteMapping(value = "/deleteHistorie/{id}")
 	public void deleteHistorie(@PathVariable Long id) {
-	historieI.deleteHistorisqueConnexionById(id);
-		
-	
+		historieI.deleteHistorisqueConnexionById(id);
+
 	}
-	
-	
-	@PutMapping(value="/updateHistorie/{id}")
+
+	@PutMapping(value = "/updateHistorie/{id}")
 	@ResponseBody
 	@Transactional
 	public HistorisqueConnexion updateHistorie(@RequestBody HistorisqueConnexion H, @PathVariable Long id) {
-		
+
 		H.setId(id);
 		historieR.save(H);
 		return H;
 
-		
-		
 	}
-	
 
 }

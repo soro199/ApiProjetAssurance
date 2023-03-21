@@ -20,6 +20,7 @@ public class RoleImpl implements IRole {
 
 	@Autowired
 	RoleRepository role;
+
 	@Override
 	public Role createRole(Role ag) {
 		// TODO Auto-generated method stub
@@ -49,7 +50,5 @@ public class RoleImpl implements IRole {
 		// TODO Auto-generated method stub
 		return this.role.findById(id).get();
 	}
-
-
 
 }

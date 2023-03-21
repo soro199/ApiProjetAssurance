@@ -32,67 +32,49 @@ import jakarta.transaction.Transactional;
 
 @RestController
 public class PoliceAssuranceController {
-	
+
 	@Autowired
 	public PoliceAssuranceRepository policeR;
-	
+
 	@Autowired
 	public PoliceAssuranceImpl policeI;
-	
-	
-   @PostMapping(value="/ajoutPolice")
-	public PoliceAssurance AjouterPolice(@RequestBody PoliceAssurance pa) {	
-	 
-		return policeI.createPoliceAssurance(pa); 	
-		
-		
+
+	@PostMapping(value = "/ajoutPolice")
+	public PoliceAssurance AjouterPolice(@RequestBody PoliceAssurance pa) {
+
+		return policeI.createPoliceAssurance(pa);
+
 	}
 
-   
+	@GetMapping(value = "/listePolice")
+	public List<PoliceAssurance> listPolice() {
+		return policeI.readPoliceAssurance();
+	}
 
- 
-   @GetMapping(value="/listePolice")
-   public List<PoliceAssurance> listPolice(){	   
-	   return policeI.readPoliceAssurance() ;
-   }
-   
-   
-   @RequestMapping(value="/afficherPolice/{id}", method = RequestMethod.GET)
-	public PoliceAssurance afficherPolice(@PathVariable Long id){
-		
+	@RequestMapping(value = "/afficherPolice/{id}", method = RequestMethod.GET)
+	public PoliceAssurance afficherPolice(@PathVariable Long id) {
+
 		PoliceAssurance ag = policeR.findById(id).orElse(null);
-		
+
 		return ag;
-		
+
 	}
-   
-   
-   @DeleteMapping(value="/deletePolice/{id}")
+
+	@DeleteMapping(value = "/deletePolice/{id}")
 	public void deletePolice(@PathVariable Long id) {
-	policeI.deletePoliceAssuranceById(id);
-	
-	
-	
+		policeI.deletePoliceAssuranceById(id);
+
 	}
-   
-   
-	@PutMapping(value="/updatePolice/{id}")
+
+	@PutMapping(value = "/updatePolice/{id}")
 	@ResponseBody
 	@Transactional
 	public PoliceAssurance updatePolice(@RequestBody PoliceAssurance P, @PathVariable Long id) {
-		
+
 		P.setId(id);
 		policeR.save(P);
-		
-		return P;
-		}
 
-		
-		
-	
-   
-	
-	    
-	
-	
+		return P;
+	}
+
 }

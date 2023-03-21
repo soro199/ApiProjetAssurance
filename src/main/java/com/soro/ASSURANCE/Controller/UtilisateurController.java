@@ -3,7 +3,6 @@
  */
 package com.soro.ASSURANCE.Controller;
 
-
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,65 +33,49 @@ import jakarta.transaction.Transactional;
 
 @RestController
 @CrossOrigin(origins = "**")
-public class UtilisateurController  {
+public class UtilisateurController {
 
 	@Autowired
 	public UtilisateurRepository utilisateurRepository;
-	
+
 	@Autowired
 	public UtilisateurImpl utilisateurImpl;
-	
-	
-	
-	
+
 	@PostMapping("/ajout/utilisateur")
-	
+
 	public Utilisateur AjouterUtilisateur(@RequestBody Utilisateur ag) {
-		
+
 		return utilisateurImpl.createUtilisateur(ag);
-		
-		
-		
+
 	}
-	
-	
-	
 
-	@RequestMapping(value="/listeUtilisateur", method = RequestMethod.GET)
+	@RequestMapping(value = "/listeUtilisateur", method = RequestMethod.GET)
 
-	public List<Utilisateur> listeUtilisateur(){		
+	public List<Utilisateur> listeUtilisateur() {
 		return utilisateurImpl.readUtilisateur();
 	}
-	
 
-	@RequestMapping(value="/afficherUtilisateur/{id}", method = RequestMethod.GET)
-	public Utilisateur afficherUtilisateur(@PathVariable Long id){
-		
+	@RequestMapping(value = "/afficherUtilisateur/{id}", method = RequestMethod.GET)
+	public Utilisateur afficherUtilisateur(@PathVariable Long id) {
+
 		Utilisateur ag = utilisateurRepository.findById(id).orElse(null);
-		
+
 		return ag;
-		
+
 	}
-	
-	
-	@DeleteMapping(value="/deleteUtilisateur/{id}")
+
+	@DeleteMapping(value = "/deleteUtilisateur/{id}")
 	public void deleteUtilisateur(@PathVariable Long id) {
-	utilisateurImpl.deleteUtilisateurById(id);
-	
-	
-	
+		utilisateurImpl.deleteUtilisateurById(id);
+
 	}
-	
-	@PutMapping(value="/updateUtilisateur/{id}")
-	@ResponseBody
-	@Transactional
+
+	@PutMapping(value = "/updateUtilisateur/{id}")
 	public Utilisateur updateUtilisareur(@RequestBody Utilisateur U, @PathVariable Long id) {
-		
+
 		U.setId(id);
 		utilisateurRepository.save(U);
 		return U;
 
-		
-		
 	}
 }

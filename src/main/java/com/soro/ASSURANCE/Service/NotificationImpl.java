@@ -20,6 +20,7 @@ public class NotificationImpl implements INotification {
 
 	@Autowired
 	NotificationRepository notification;
+
 	@Override
 	public Notification createDocument(Notification ag) {
 		// TODO Auto-generated method stub

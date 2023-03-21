@@ -12,11 +12,13 @@ import com.soro.ASSURANCE.Entity.*;
  *
  */
 public interface ISinistre {
-	
+
 	public Sinistre createSinistre(Sinistre ag);
+
 	public List<Sinistre> readSinistre();
+
 	public Sinistre updateSinistreById(Long id, Sinistre ag);
+
 	public void deleteSinistreById(Long id);
-	
 
 }

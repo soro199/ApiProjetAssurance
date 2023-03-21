@@ -30,60 +30,50 @@ import jakarta.transaction.Transactional;
 @RestController
 @CrossOrigin(origins = "*")
 public class PaiementController {
-	
+
 	@Autowired
 	public PaiementImpl paiementI;
-	
+
 	@Autowired
 	public PaiementRepository paiementR;
-	
-	
-	@RequestMapping(value="/ajoutPaiement",method = RequestMethod.POST)
-	public Paiement AjouterPaiement(@RequestBody Paiement ag) {	
+
+	@RequestMapping(value = "/ajoutPaiement", method = RequestMethod.POST)
+	public Paiement AjouterPaiement(@RequestBody Paiement ag) {
 		return paiementI.createPaiement(ag);
 	}
-	
-	
-	
-	@RequestMapping(value="/listePaiement", method = RequestMethod.GET)
 
-	public List<Paiement> listePaiement(){		
-		//return paiementI.readPaiement();
-		
+	@RequestMapping(value = "/listePaiement", method = RequestMethod.GET)
+
+	public List<Paiement> listePaiement() {
+		// return paiementI.readPaiement();
+
 		return paiementR.findAll();
 	}
-	
-	
-	@RequestMapping(value="/afficherPaiement/{id}", method = RequestMethod.GET)
-	public Paiement afficherPaiement(@PathVariable Long id){		
+
+	@RequestMapping(value = "/afficherPaiement/{id}", method = RequestMethod.GET)
+	public Paiement afficherPaiement(@PathVariable Long id) {
 		Paiement ag = paiementR.findById(id).orElse(null);
-		
+
 		return ag;
-		
+
 	}
-	
-	@DeleteMapping(value="/deletePaiement/{id}")
+
+	@DeleteMapping(value = "/deletePaiement/{id}")
 	public void deletePaiement(@PathVariable Long id) {
-		
+
 		paiementI.deletePaiementById(id);
-		
-		
-		
+
 	}
-	
-	@PutMapping(value="/updatePaiement/{id}")
+
+	@PutMapping(value = "/updatePaiement/{id}")
 	@ResponseBody
 	@Transactional
 	public Paiement updatePaiement(@RequestBody Paiement U, @PathVariable Long id) {
-		
+
 		U.setId(id);
 		paiementR.save(U);
 		return U;
 
-		
-		
 	}
-
-	
 
 }

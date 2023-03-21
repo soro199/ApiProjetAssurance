@@ -3,8 +3,6 @@
  */
 package com.soro.ASSURANCE.Service;
 
-
-
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +17,7 @@ import com.soro.ASSURANCE.Repository.*;
  */
 @Component
 public class SouscriptionImpl implements ISouscription {
-	
+
 	@Autowired
 	SouscriptionRepository souscription;
 
@@ -44,10 +42,8 @@ public class SouscriptionImpl implements ISouscription {
 	@Override
 	public void deleteSouscriptionById(Long id) {
 		// TODO Auto-generated method stub
-		
+
 		souscription.deleteById(id);
 	}
-
-
 
 }

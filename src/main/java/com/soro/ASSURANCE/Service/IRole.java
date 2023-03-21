@@ -7,7 +7,6 @@ import java.util.List;
 
 import com.soro.ASSURANCE.Entity.Role;
 
-
 /**
  * @author Administrator
  *
@@ -15,8 +14,12 @@ import com.soro.ASSURANCE.Entity.Role;
 public interface IRole {
 
 	public Role createRole(Role ag);
+
 	public List<Role> readRole();
+
 	public Role updateRoleById(Long id, Role ag);
+
 	public void deleteRoleById(Long id);
+
 	public Role findonRole(Long id);
 }

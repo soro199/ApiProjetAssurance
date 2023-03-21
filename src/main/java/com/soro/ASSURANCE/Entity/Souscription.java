@@ -31,37 +31,35 @@ import lombok.NoArgsConstructor;
  */
 
 @Entity
-@Table(name= "souscription")
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class,property = "id")
-public class Souscription implements Serializable  {
-	
-	
-	// les attributs 
-	
+@Table(name = "souscription")
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
+public class Souscription implements Serializable {
+
+	// les attributs
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long id ;
+	private Long id;
 	@DateTimeFormat(pattern = "yyy-MM-dd")
-	private Date date_souscription ;
+	private Date date_souscription;
 	private String description;
 	@DateTimeFormat(pattern = "yyy-MM-dd")
 	private Date dateDebut;
-	 @DateTimeFormat(pattern = "yyy-MM-dd")
+	@DateTimeFormat(pattern = "yyy-MM-dd")
 	private Date dateFin;
-	
-	
+
 	@OneToOne
 	@JoinColumn(name = "utilisateur_id")
-	//@JsonBackReference
+	// @JsonBackReference
 	@JsonIdentityReference(alwaysAsId = true)
 	private Utilisateur utilisateur;
-	
+
 	@OneToOne
 	@JoinColumn(name = "police_id")
-	//@JsonBackReference
+	// @JsonBackReference
 	@JsonIdentityReference(alwaysAsId = true)
 	private PoliceAssurance police;
-	
+
 	// super class
 
 	/**
@@ -72,9 +70,7 @@ public class Souscription implements Serializable  {
 		// TODO Auto-generated constructor stub
 	}
 
-	
-	//getters  et setters
-
+	// getters et setters
 
 	/**
 	 * @return the id
@@ -83,16 +79,12 @@ public class Souscription implements Serializable  {
 		return id;
 	}
 
-
-
 	/**
 	 * @param id the id to set
 	 */
 	public void setId(Long id) {
 		this.id = id;
 	}
-
-
 
 	/**
 	 * @return the date_souscription
@@ -101,16 +93,12 @@ public class Souscription implements Serializable  {
 		return date_souscription;
 	}
 
-
-
 	/**
 	 * @param date_souscription the date_souscription to set
 	 */
 	public void setDate_souscription(Date date_souscription) {
 		this.date_souscription = date_souscription;
 	}
-
-
 
 	/**
 	 * @return the description
@@ -119,16 +107,12 @@ public class Souscription implements Serializable  {
 		return description;
 	}
 
-
-
 	/**
 	 * @param description the description to set
 	 */
 	public void setDescription(String description) {
 		this.description = description;
 	}
-
-
 
 	/**
 	 * @return the dateDebut
@@ -137,16 +121,12 @@ public class Souscription implements Serializable  {
 		return dateDebut;
 	}
 
-
-
 	/**
 	 * @param dateDebut the dateDebut to set
 	 */
 	public void setDateDebut(Date dateDebut) {
 		this.dateDebut = dateDebut;
 	}
-
-
 
 	/**
 	 * @return the dateFin
@@ -155,16 +135,12 @@ public class Souscription implements Serializable  {
 		return dateFin;
 	}
 
-
-
 	/**
 	 * @param dateFin the dateFin to set
 	 */
 	public void setDateFin(Date dateFin) {
 		this.dateFin = dateFin;
 	}
-
-
 
 	/**
 	 * @return the utilisateur
@@ -173,16 +149,12 @@ public class Souscription implements Serializable  {
 		return utilisateur;
 	}
 
-
-
 	/**
 	 * @param utilisateur the utilisateur to set
 	 */
 	public void setUtilisateur(Utilisateur utilisateur) {
 		this.utilisateur = utilisateur;
 	}
-
-
 
 	/**
 	 * @return the police
@@ -191,8 +163,6 @@ public class Souscription implements Serializable  {
 		return police;
 	}
 
-
-
 	/**
 	 * @param police the police to set
 	 */
@@ -200,7 +170,7 @@ public class Souscription implements Serializable  {
 		this.police = police;
 	}
 
-	//constructeur avec paramettre
+	// constructeur avec paramettre
 	/**
 	 * @param id
 	 * @param date_souscription
@@ -221,19 +191,5 @@ public class Souscription implements Serializable  {
 		this.utilisateur = utilisateur;
 		this.police = police;
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 
 }

@@ -28,62 +28,48 @@ import jakarta.transaction.Transactional;
  */
 @RestController
 public class NotificationController {
-	
-	
+
 	@Autowired
 	NotificationImpl notifImp;
 	@Autowired
 	NotificationRepository notifR;
-	
-	
-	
 
-	@RequestMapping(value = "/ajouteNotification",method =RequestMethod.POST )
+	@RequestMapping(value = "/ajouteNotification", method = RequestMethod.POST)
 	public Notification AjouterNotification(@RequestBody Notification notif) {
 		return notifImp.createDocument(notif);
-				
+
 	}
-	
-	
-	
 
-	@RequestMapping(value="/listeNotification", method = RequestMethod.GET)
+	@RequestMapping(value = "/listeNotification", method = RequestMethod.GET)
 
-	public List<Notification> listeNotification(){		
+	public List<Notification> listeNotification() {
 		return notifImp.readNotification();
 	}
-	
-	
-	
-	@RequestMapping(value="/afficherNotification/{id}", method = RequestMethod.GET)
-	public Notification afficherNotification(@PathVariable Long id){
-		
+
+	@RequestMapping(value = "/afficherNotification/{id}", method = RequestMethod.GET)
+	public Notification afficherNotification(@PathVariable Long id) {
+
 		Notification notif = notifR.findById(id).orElse(null);
-	
+
 		return notif;
-		
+
 	}
-	
-	
-	@DeleteMapping(value="/deleteNotification/{id}")
+
+	@DeleteMapping(value = "/deleteNotification/{id}")
 	public void deleteNotification(@PathVariable Long id) {
-	notifImp.deleteNotificationById(id);
-		
-	
+		notifImp.deleteNotificationById(id);
+
 	}
-	
-	
-	@PutMapping(value="/updateNotification/{id}")
+
+	@PutMapping(value = "/updateNotification/{id}")
 	@ResponseBody
 	@Transactional
 	public Notification updateNotification(@RequestBody Notification notif, @PathVariable Long id) {
-		
+
 		notif.setId(id);
 		notifR.save(notif);
 		return notif;
 
-		
-		
 	}
 
 }

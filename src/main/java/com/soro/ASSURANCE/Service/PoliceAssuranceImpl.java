@@ -20,9 +20,9 @@ import com.soro.ASSURANCE.Repository.*;
 @Component
 public class PoliceAssuranceImpl implements IPoliceAssurance {
 
-	
 	@Autowired
 	PoliceAssuranceRepository police;
+
 	@Override
 	public PoliceAssurance createPoliceAssurance(PoliceAssurance ag) {
 		// TODO Auto-generated method stub
@@ -44,7 +44,7 @@ public class PoliceAssuranceImpl implements IPoliceAssurance {
 	@Override
 	public void deletePoliceAssuranceById(Long id) {
 		// TODO Auto-generated method stub
-		
+
 		police.deleteById(id);
 	}
 

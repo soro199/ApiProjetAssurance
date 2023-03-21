@@ -16,9 +16,8 @@ import com.soro.ASSURANCE.Repository.*;
  *
  */
 @Component
-public class UtilisateurImpl implements IUtilisateur{
+public class UtilisateurImpl implements IUtilisateur {
 
-	
 	@Autowired
 	UtilisateurRepository utilisateur;
 
@@ -43,9 +42,8 @@ public class UtilisateurImpl implements IUtilisateur{
 	@Override
 	public void deleteUtilisateurById(Long id) {
 		// TODO Auto-generated method stub
-		
+
 		utilisateur.deleteById(id);
 	}
-	
 
 }

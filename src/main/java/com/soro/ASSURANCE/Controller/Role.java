@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-
 import com.soro.ASSURANCE.Repository.RoleRepository;
 import com.soro.ASSURANCE.Service.RoleImpl;
 
@@ -36,58 +35,47 @@ public class Role {
 
 	@Autowired
 	public RoleRepository roleR;
-	
+
 	@Autowired
 	public RoleImpl roleI;
-	
-	
-	
+
 	@PostMapping("/ajoutRole")
-	public com.soro.ASSURANCE.Entity.Role AjouterRole(@RequestBody com.soro.ASSURANCE.Entity.Role ag) {	
+	public com.soro.ASSURANCE.Entity.Role AjouterRole(@RequestBody com.soro.ASSURANCE.Entity.Role ag) {
 		return roleI.createRole(ag);
 	}
-	
-	
-	
-	@RequestMapping(value="/listeRole", method = RequestMethod.GET)
 
-	public List<com.soro.ASSURANCE.Entity.Role> listeRoles(){		
+	@RequestMapping(value = "/listeRole", method = RequestMethod.GET)
+
+	public List<com.soro.ASSURANCE.Entity.Role> listeRoles() {
 		return roleI.readRole();
 	}
-	
-	
-	@RequestMapping(value="/afficherRole/{id}", method = RequestMethod.GET)
-	public com.soro.ASSURANCE.Entity.Role afficherRole(@PathVariable Long id){
-		
+
+	@RequestMapping(value = "/afficherRole/{id}", method = RequestMethod.GET)
+	public com.soro.ASSURANCE.Entity.Role afficherRole(@PathVariable Long id) {
+
 		com.soro.ASSURANCE.Entity.Role ag = roleR.findById(id).orElse(null);
-		
+
 		return ag;
-		
+
 	}
-	
-	
-	
-	
-	@DeleteMapping(value="/deleteRole/{id}")
+
+	@DeleteMapping(value = "/deleteRole/{id}")
 	public void deleteRole(@PathVariable Long id) {
-	
-	roleI.deleteRoleById(id);
-	
-	
-	
+
+		roleI.deleteRoleById(id);
+
 	}
-	
-	@PutMapping(value="/updateRole/{id}")
+
+	@PutMapping(value = "/updateRole/{id}")
 	@ResponseBody
 	@Transactional
-	public com.soro.ASSURANCE.Entity.Role updateRole(@RequestBody com.soro.ASSURANCE.Entity.Role U, @PathVariable Long id) {
-		
+	public com.soro.ASSURANCE.Entity.Role updateRole(@RequestBody com.soro.ASSURANCE.Entity.Role U,
+			@PathVariable Long id) {
+
 		U.setId(id);
 		roleR.save(U);
 		return U;
 
-		
-		
 	}
 
 }

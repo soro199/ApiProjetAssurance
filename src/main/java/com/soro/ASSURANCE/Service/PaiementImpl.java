@@ -1,4 +1,5 @@
 package com.soro.ASSURANCE.Service;
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +13,7 @@ public class PaiementImpl implements IPaiement {
 
 	@Autowired
 	PaiementRepository paiement;
-	
+
 	@Override
 	public Paiement createPaiement(Paiement ag) {
 		// TODO Auto-generated method stub
@@ -34,11 +35,8 @@ public class PaiementImpl implements IPaiement {
 	@Override
 	public void deletePaiementById(Long id) {
 		// TODO Auto-generated method stub
-		
+
 		paiement.deleteById(id);
 	}
-	
-	
-	
 
 }

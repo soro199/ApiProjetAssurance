@@ -18,8 +18,8 @@ import lombok.AllArgsConstructor;
 
 @Entity
 @Table(name = "sinistre")
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class,property = "id")
-public class Sinistre implements Serializable   {
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
+public class Sinistre implements Serializable {
 	// attributs
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,7 +27,7 @@ public class Sinistre implements Serializable   {
 
 	@ManyToOne
 	@JoinColumn(name = "utilisateur_id")
-	//@JsonIgnore
+	// @JsonIgnore
 	private Utilisateur utilisateur;
 
 	@ManyToOne

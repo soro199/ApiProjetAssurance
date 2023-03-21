@@ -24,8 +24,8 @@ import lombok.AllArgsConstructor;
 
 @Entity
 @Table(name = "paiement")
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class,property = "id")
-public class Paiement implements Serializable  {
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
+public class Paiement implements Serializable {
 
 	// les attributs
 
@@ -34,15 +34,14 @@ public class Paiement implements Serializable  {
 	private Long id;
 	@DateTimeFormat(pattern = "yyy-MM-dd")
 	private Date datePaiement;
-	private float montant;	
+	private float montant;
 	private String modePaiement;
-	
-	//@JsonBackReference
+
+	// @JsonBackReference
 	@OneToOne
-	@JoinColumn(name = "utilisateur_id",referencedColumnName = "id")
+	@JoinColumn(name = "utilisateur_id", referencedColumnName = "id")
 	@JsonIdentityReference(alwaysAsId = true)
 	private Utilisateur utilisateur;
-
 
 	// constructeurs avec paramettre
 
@@ -103,8 +102,5 @@ public class Paiement implements Serializable  {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	
-	
-	
 
 }
